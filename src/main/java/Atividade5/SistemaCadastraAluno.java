@@ -22,12 +22,13 @@ public class SistemaCadastraAluno implements CadastroDeAlunos, Serializable {
 
 
     @Override
-    public void cadastraAluno(String nome, String matricula) throws AlunoJaCadastradoException {
+    public boolean cadastraAluno(String nome, String matricula){
        if(this.alunos.containsKey(matricula)){
-           throw new AlunoJaCadastradoException("Aluno já cadastrado");
+           return false;
        }else{
            Aluno aluno = new Aluno(nome, matricula);
            this.alunos.put(matricula, aluno);
+           return true;
        }
     }
 
